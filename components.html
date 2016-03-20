@@ -10,6 +10,7 @@
 
 <body>
   <div id="container"></div>
+  <div id="container2"></div>
   <script type="text/babel">
   var HelloWorld = React.createClass({
     render: function() {
@@ -32,6 +33,24 @@
   );
 
   </script>
+  <script type="text/babel">
+  var Buttonify = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <button type={this.props.behavior}>{this.props.children}</button>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <div>
+    <Buttonify behavior="Submit">SEND DATA</Buttonify>
+  </div>,
+  document.querySelector("#container2")
+);
+</script>
 </body>
 
 </html>
