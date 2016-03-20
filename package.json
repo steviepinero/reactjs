@@ -1,0 +1,34 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React is a JavaScript library for building user interfaces.",
+  "main": "server.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "express": "^4.13.4",
+    "express-stormpath": "^3.0.1",
+    "literalify": "^0.4.0",
+    "node-jsx": "^0.13.3",
+    "react": "^0.14.7",
+    "uniq": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steviepinero/reactjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steviepinero/reactjs/issues"
+  },
+  "homepage": "https://github.com/steviepinero/reactjs#readme"
+}
