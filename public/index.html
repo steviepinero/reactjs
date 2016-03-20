@@ -3,6 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <title>I'm in a React app!</title>
+    <style>
+    body {
+  font-family: Tahoma, sans-serif;
+  margin: 0;
+}
+
+.ContactView-title {
+  font-size: 24px;
+  padding: 0 24px;
+}
+
+.ContactView-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.ContactItem {
+  margin: 0;
+  padding: 8px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ContactItem-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+.ContactItem-email {
+  font-size: 14px;
+  margin-top: 4px;
+  font-style: italic;
+  color: #888;
+}
+.ContactItem-description {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+
+.ContactForm {
+  padding: 8px 24px;
+}
+.ContactForm > input,
+.ContactForm > textarea {
+  display: block;
+  width: 240px;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  border: 1px solid #888;
+  font-size: 14px;
+}
+</style>
   </head>
   <body>
     <div id="react-app"></div>
@@ -40,7 +94,7 @@ var ContactItem = React.createClass({
   },
 
   render: function() {
-    //  wrap mult-line return statements in parentheses to avoid the
+    // TODO Remember to Wrap mult-line return statements in parentheses to avoid the
     // inevitable bugs caused by forgetting that JavaScript will throw away
     // the final lines when possible. The parentheses are not strictly
     // necessary.
@@ -82,6 +136,26 @@ var ContactForm = React.createClass({
   },
 })
 
+var ContactView = React.createClass({
+  propTypes: {
+    contacts: React.PropTypes.array.isRequired,
+    newContact: React.PropTypes.object.isRequired,
+  },
+
+  render: function() {
+    var contactItemElements = this.props.contacts
+      .filter(function(contact) { return contact.email })
+      .map(function(contact) { return React.createElement(ContactItem, contact) })
+
+    return (
+      React.createElement('div', {className: 'ContactView'},
+        React.createElement('h1', {className: 'ContactView-title'}, "Contacts"),
+        React.createElement('ul', {className: 'ContactView-list'}, contactItemElements),
+        React.createElement(ContactForm, {contact: this.props.newContact})
+      )
+    )
+  },
+})
 
 /*
  * Render
@@ -98,5 +172,11 @@ var rootElement =
     React.createElement(ContactForm, {contact: newContact})
   )
 
-ReactDOM.render(rootElement, document.getElementById('react-app'))
+  ReactDOM.render(
+    React.createElement(ContactView, {
+      contacts: contacts,
+      newContact: newContact
+    }),
+    document.getElementById('react-app')
+  )
 </script>
